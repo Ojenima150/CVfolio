@@ -1,0 +1,53 @@
+
+<%- include("partials/header") %>
+
+<div class="container" style="max-width: 500px; margin: 50px auto;">
+  <h2 class="text-center mb-4">Register</h2>
+
+  <!-- Error Message -->
+  <% if (error) { %>
+    <div style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+      <%= error %>
+    </div>
+  <% } %>
+
+  <!-- Register Form -->
+  <form class="" action="/register" method="POST">
+    <div class="form-group">
+      <label for="name" class="form-label">Full Name</label>
+      <input type="text" name="name" id="name" class="form-control" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="form-label">Email Address</label>
+      <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+    </div>
+
+    <div class="form-group">
+      <label for="role" class="form-label">Role</label>
+      <select name="role" id="role" class="form-select">
+        <option value="user">User</option>
+        <option value="created_admin">Created Admin</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success w-100">Register</button>
+  </form>
+
+  <% if (!ceoExists) { %>
+    <p class="mt-4 text-center">
+      🚀 Are you the CEO? <a href="/register-ceo" class="btn btn-outline-primary btn-sm">Register as CEO</a>
+    </p>
+  <% } %>
+
+  <p class="mt-3 text-center">
+    Already have an account? <a href="/login">Login here</a>
+  </p>
+</div>
+
+<%- include("partials/footer") %>

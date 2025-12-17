@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Templates</title>
+<link rel="stylesheet" href="../css/CV.css">
+<!-- <link rel="stylesheet" href="../css/style.css"> -->
+
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">OJ.Rapheal<span class="accent">.</span></div>
+  <nav>
+    <ul class="nav-links">
+      <li>
+        <a href="../index.html">Home</a>
+      </li>
+      <li>
+        <a href="../contact.html">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <button id="themeToggle">🌙</button>
+</header>
+
+
+<h1>CV Templates by Country</h1>
+
+<!-- Tabs -->
+<div>
+  <div class="tab active" onclick="showCV('germany')">Germany</div>
+  <div class="tab" onclick="showCV('uk')">UK</div>
+  <div class="tab" onclick="showCV('canada')">Canada</div>
+  <div class="tab" onclick="showCV('belgium')">Belgium</div>
+  <div class="tab" onclick="showCV('japan')">Japan</div>
+</div>
+
+<!-- Germany CV -->
+<div id="germany" class="cv-template" style="display:block;">
+  <h2>Germany CV (Lebenslauf)</h2>
+  <div class="section">
+    <h3>Personal Information</h3>
+    <p>Name: Max Mustermann</p>
+    <p>Address: Musterstraße 12, 12345 Berlin, Germany</p>
+    <p>Email: max.mustermann@example.de</p>
+    <p>Phone: +49 123 456789</p>
+    <p>Date of Birth: 01.01.1990</p>
+    <p>Nationality: German</p>
+  </div>
+  <div class="section">
+    <h3>Professional Summary</h3>
+    <p>Experienced software engineer specializing in backend development with a focus on Python and cloud applications.</p>
+  </div>
+  <div class="section">
+    <h3>Work Experience</h3>
+    <div class="job">
+      <strong>Senior Software Engineer</strong> - Siemens AG (2018 - Present)<br>
+      - Developed cloud-based solutions for industrial applications.<br>
+      - Led a team of 5 engineers.
+    </div>
+    <div class="job">
+      <strong>Software Developer</strong> - SAP (2015 - 2018)<br>
+      - Maintained enterprise applications in Java and Python.
+    </div>
+  </div>
+  <div class="section">
+    <h3>Education</h3>
+    <div class="edu">
+      <strong>M.Sc. Computer Science</strong> - TU Berlin (2013 - 2015)
+    </div>
+    <div class="edu">
+      <strong>B.Sc. Computer Science</strong> - University of Hamburg (2010 - 2013)
+    </div>
+  </div>
+  <div class="section">
+    <h3>Skills</h3>
+    <p>Python, Java, SQL, AWS, Docker, Git</p>
+  </div>
+</div>
+
+<!-- UK CV -->
+<div id="uk" class="cv-template">
+  <h2>UK CV</h2>
+  <div class="section">
+    <h3>Personal Details</h3>
+    <p>Name: John Smith</p>
+    <p>Address: 12 Baker Street, London, UK</p>
+    <p>Email: john.smith@example.co.uk</p>
+    <p>Phone: +44 20 1234 5678</p>
+  </div>
+  <div class="section">
+    <h3>Profile</h3>
+    <p>Skilled backend developer with 8 years of experience in building scalable web applications and cloud solutions.</p>
+  </div>
+  <div class="section">
+    <h3>Work Experience</h3>
+    <div class="job">
+      <strong>Senior Backend Developer</strong> - BBC (2017 - Present)<br>
+      - Led microservices projects in Python and Node.js.<br>
+      - Mentored junior developers.
+    </div>
+    <div class="job">
+      <strong>Software Developer</strong> - Barclays (2014 - 2017)<br>
+      - Built financial web applications with Java and Spring.
+    </div>
+  </div>
+  <div class="section">
+    <h3>Education</h3>
+    <div class="edu">
+      <strong>MSc Computer Science</strong> - University of Oxford (2012 - 2013)
+    </div>
+    <div class="edu">
+      <strong>BSc Computer Science</strong> - University of Manchester (2009 - 2012)
+    </div>
+  </div>
+  <div class="section">
+    <h3>Skills</h3>
+    <p>Python, Node.js, SQL, AWS, Docker, Git</p>
+  </div>
+</div>
+
+<!-- Canada CV -->
+<div id="canada" class="cv-template">
+  <h2>Canada CV</h2>
+  <div class="section">
+    <h3>Contact Information</h3>
+    <p>Name: Emily Johnson</p>
+    <p>Address: 123 Maple Street, Toronto, ON, Canada</p>
+    <p>Email: emily.johnson@example.ca</p>
+    <p>Phone: +1 416 123 4567</p>
+  </div>
+  <div class="section">
+    <h3>Summary</h3>
+    <p>Experienced software engineer focusing on cloud architecture and scalable backend systems.</p>
+  </div>
+  <div class="section">
+    <h3>Work Experience</h3>
+    <div class="job">
+      <strong>Software Engineer</strong> - Shopify (2018 - Present)<br>
+      - Developed and optimized e-commerce backend systems.<br>
+      - Managed CI/CD pipelines.
+    </div>
+    <div class="job">
+      <strong>Junior Developer</strong> - RBC (2015 - 2018)<br>
+      - Built internal financial tools with Python and SQL.
+    </div>
+  </div>
+  <div class="section">
+    <h3>Education</h3>
+    <div class="edu">
+      <strong>MSc Computer Science</strong> - University of Toronto (2013 - 2015)
+    </div>
+    <div class="edu">
+      <strong>BSc Computer Science</strong> - McGill University (2009 - 2013)
+    </div>
+  </div>
+  <div class="section">
+    <h3>Skills</h3>
+    <p>Python, Java, SQL, AWS, Docker, Git</p>
+  </div>
+</div>
+
+<!-- Belgium CV -->
+<div id="belgium" class="cv-template">
+  <h2>Belgium CV</h2>
+  <div class="section">
+    <h3>Personal Info</h3>
+    <p>Name: Lucas Dupont</p>
+    <p>Address: Rue de la Loi 16, Brussels, Belgium</p>
+    <p>Email: lucas.dupont@example.be</p>
+    <p>Phone: +32 2 123 4567</p>
+    <p>Nationality: Belgian</p>
+  </div>
+  <div class="section">
+    <h3>Professional Summary</h3>
+    <p>Software engineer experienced in enterprise solutions, cloud computing, and backend architecture.</p>
+  </div>
+  <div class="section">
+    <h3>Work Experience</h3>
+    <div class="job">
+      <strong>Senior Software Engineer</strong> - Solvay (2017 - Present)<br>
+      - Led software modernization projects.<br>
+      - Developed cloud-based applications.
+    </div>
+    <div class="job">
+      <strong>Software Developer</strong> - Proximus (2014 - 2017)<br>
+      - Built internal tools and APIs in Python and Java.
+    </div>
+  </div>
+  <div class="section">
+    <h3>Education</h3>
+    <div class="edu">
+      <strong>MSc Computer Science</strong> - KU Leuven (2012 - 2014)
+    </div>
+    <div class="edu">
+      <strong>BSc Computer Science</strong> - University of Ghent (2009 - 2012)
+    </div>
+  </div>
+  <div class="section">
+    <h3>Skills</h3>
+    <p>Python, Java, SQL, Docker, AWS, Git</p>
+  </div>
+</div>
+
+<!-- Japan CV -->
+<div id="japan" class="cv-template">
+  <h2>Japan CV</h2>
+  <div class="section">
+    <h3>Personal Information</h3>
+    <p>Name: Takashi Yamamoto</p>
+    <p>Address: 1-2-3 Shibuya, Tokyo, Japan</p>
+    <p>Email: takashi.yamamoto@example.jp</p>
+    <p>Phone: +81 3-1234-5678</p>
+    <p>Date of Birth: 1990/01/01</p>
+  </div>
+  <div class="section">
+    <h3>Career Objective</h3>
+    <p>Backend developer with strong experience in Python and cloud technologies, seeking opportunities in software development.</p>
+  </div>
+  <div class="section">
+    <h3>Work Experience</h3>
+    <div class="job">
+      <strong>Software Engineer</strong> - Rakuten (2017 - Present)<br>
+      - Developed backend services for e-commerce platform.<br>
+      - Implemented REST APIs and microservices.
+    </div>
+    <div class="job">
+      <strong>Junior Developer</strong> - SoftBank (2014 - 2017)<br>
+      - Maintained internal systems and web applications.
+    </div>
+  </div>
+  <div class="section">
+    <h3>Education</h3>
+    <div class="edu">
+      <strong>MSc Computer Science</strong> - University of Tokyo (2012 - 2014)
+    </div>
+    <div class="edu">
+      <strong>BSc Computer Science</strong> - Kyoto University (2008 - 2012)
+    </div>
+  </div>
+  <div class="section">
+    <h3>Skills</h3>
+    <p>Python, Java, SQL, AWS, Docker, Git</p>
+  </div>
+</div>
+
+<script src="../js/cv.js"></script>
+
+
+</body>
+</html>

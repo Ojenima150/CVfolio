@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uploaded Hire Projects</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    nav {
+      background: #007bff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    #projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .project-card h3 {
+      margin: 0 0 10px;
+      color: #007bff;
+    }
+    .project-card p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+    a.share-link {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #28a745;
+      font-weight: bold;
+    }
+    a.share-link:hover {
+      text-decoration: underline;
+    }
+
+  .highlighted-project {
+    background-color: #fff6d1;
+    border: 2px solid #f5c542;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    transition: all 0.4s ease;
+  }
+
+  </style>
+</head>
+
+<body>
+  <!-- ✅ NAVBAR -->
+  <nav>
+    <a href="/index.html">⬅️ Back to Home</a>
+  </nav>
+
+  <h2>📁 All Uploaded Hire Projects</h2>
+  <div id="projects">Loading...</div>
+
+
+
+
+
+
+
+
+
+  <!-- //====javascript -->
+  
+<script>
+  async function loadProjects() {
+    try {
+      const res = await fetch('/hire/projects');
+      const projects = await res.json();
+      const container = document.getElementById('projects');
+
+      if (!projects.length) {
+        container.innerHTML = '<p>No projects uploaded yet.</p>';
+        return;
+      }
+
+      container.innerHTML = projects.map(p => `
+        <div class="project-card">
+          <h3>${p.projectName}</h3>
+          <p><strong>Hire Name:</strong> ${p.hireName}</p>
+          <p><strong>Hire Email:</strong> ${p.hireEmail}</p>
+          <a class="share-link" href="${p.link}" target="_blank">🔗 View / Share Link</a><br>
+          <a class="share-link download-btn" data-project="${p.projectName}" href="${p.downloadLink}">⬇️ Download ${p.projectName}</a>
+        </div>
+      `).join('');
+    } catch (err) {
+      document.getElementById('projects').innerHTML = '❌ Error loading projects.';
+    }
+  }
+
+  loadProjects();
+
+  // ✅ Attach success.html redirect after download
+  function attachDownloadRedirect() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.download-btn');
+      if (!btn) return;
+
+      e.preventDefault();
+      const projectName = btn.dataset.project;
+      const downloadUrl = btn.getAttribute('href');
+
+      // Create hidden iframe to trigger download without navigating away
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = downloadUrl;
+      document.body.appendChild(iframe);
+
+      // After 2 seconds, open success page
+      setTimeout(() => {
+        window.location.href = `/views/success.html?project=${encodeURIComponent(projectName)}`;
+      }, 2000);
+    });
+  }
+
+  window.addEventListener('DOMContentLoaded', attachDownloadRedirect);
+
+
+  // ✅ Highlight the searched project when redirected from home page
+window.addEventListener('load', () => {
+  const params = new URLSearchParams(window.location.search);
+  const projectQuery = params.get('project');
+  if (!projectQuery) return;
+
+  // Wait a moment for the project cards to render
+  setTimeout(() => {
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+      const title = card.querySelector('h3');
+      if (title && title.textContent.toLowerCase().includes(projectQuery.toLowerCase())) {
+        card.classList.add('highlighted-project');
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }, 800);
+});
+
+
+//===== limited time of download by 2 times====
+
+function setupDownloadLimit() {
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.download-btn');
+    if (!btn) return;
+
+    e.preventDefault();
+    const projectName = btn.dataset.project;
+    const storageKey = `downloadCount_${projectName}`;
+    let count = parseInt(localStorage.getItem(storageKey)) || 0;
+
+    if (count >= 2) {
+      // ✅ Show custom message with WhatsApp contact
+      const confirmContact = confirm(
+        '⚠️ You have exceeded your download limit.\n\nWould you like to contact the admin on WhatsApp to enable your downloads again?'
+      );
+
+      if (confirmContact) {
+        // ✅ Use setTimeout to ensure WhatsApp link opens reliably
+        setTimeout(() => {
+          window.open(
+            'https://wa.me/2347052218308?text=Hello%20Admin,%20I%20have%20exceeded%20my%20download%20limit%20for%20my%20project%20and%20need%20access%20again.',
+            '_blank'
+          );
+        }, 100);
+      }
+
+      return;
+    }
+
+    // ✅ Increment download count
+    count++;
+    localStorage.setItem(storageKey, count);
+
+    // ✅ Proceed with download
+    const downloadUrl = btn.getAttribute('href');
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = downloadUrl;
+    document.body.appendChild(iframe);
+
+    // ✅ After 2 seconds, open success page
+    setTimeout(() => {
+      window.location.href = `/views/success.html?project=${encodeURIComponent(projectName)}`;
+    }, 2000);
+  });
+}
+
+// ✅ Call it after DOM load
+window.addEventListener('DOMContentLoaded', setupDownloadLimit);
+
+
+</script>
+
+
+
+</body>
+</html>

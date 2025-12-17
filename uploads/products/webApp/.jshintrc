@@ -1,0 +1,33 @@
+{
+  "browser": false,
+  "camelcase": true,
+  "curly": true,
+  "devel": true,
+  "eqeqeq": true,
+  "forin": true,
+  "indent": 2,
+  "noarg": true,
+  "node": true,
+  "quotmark": "single",
+  "undef": true,
+  "strict": false,
+  "unused": true
+}
+
+w": true,
+    "undef": true,
+    "unused": "vars",
+    "trailing": true,
+
+    "quotmark": true,
+    "expr": true,
+    "asi": true,
+
+    "browser": false,
+    "esnext": true,
+    "devel": false,
+    "node": false,
+    "nonstandard": false,
+
+    "predef": ["require", "module", "__dirname", "__filename"]
+}

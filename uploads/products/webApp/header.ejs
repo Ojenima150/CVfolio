@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>E-Commerce</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-container">
+      <h1 class="logo">E-Commerce Website</h1>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+
+        <% if (!user) { %>
+          <a href="/login">Login</a>
+          <a href="/register">Register</a>
+        <% } else { %>
+          <a href="/logout">Logout</a>
+
+          <% if (user.role === "created_admin") { %>
+            <a href="/products/mine">My Products</a>
+          <% } %>
+
+          <% if (user.role === "main_admin") { %>
+            <a href="/admin/dashboard">Admin Panel</a>
+          <% } %>
+
+          <a href="/cart">Cart</a>
+        <% } %>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <nav class="navbar">
+      <ul class="nav">
+        <% /* Only show Add Product here (secondary navbar). Top nav is unchanged above. */ %>
+        <% if (user && (user.role === 'main_admin' || (user.role === 'created_admin' && user.approved))) { %>
+          <li class="maio"><a href="/products/add">Add Product</a></li>
+        <% } %>
+      </ul>
+    </nav>
+
+    <!-- debug (remove when finished) -->
+    <pre style="display:none"><%= JSON.stringify(user) %></pre>
+
+
+

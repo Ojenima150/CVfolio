@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/admino.css">
+  <title>OJ.Rapheal Admin</title>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo">OJ.Rapheal<span class="accent">.</span></div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><h2 class="topup">Admin Panel</h2></li>
+      </ul>
+    </nav>
+    <button id="themeToggle">🌙</button>
+  </header>
+
+  <!-- LOGIN FORM -->
+  <div class="login-container">
+    <div id="loginForm">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Admin Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button id="loginBtn">Login</button>
+      <p id="loginError" style="color:red; display:none;"></p>
+    </div>
+  </div>
+
+  <!-- ADMIN ACTIONS -->
+  <div id="adminActions" style="display:none;">
+
+    <!-- ✅ Added link to Hire_Admin.html -->
+    <div class="card">
+      <h3>Hire Section</h3>
+      <a href="../../views/hire_Admin.html" class="hire-link" id="hirePageLink" style="display: none;">📁 Go to Hire Upload Page</a>
+      <a href="../../views/hire_Admin.html" class="hire-link" id="hirePageLink">📁 Go to Hire Upload Page</a>
+    </div>
+
+    <div class="card">
+      <a href="./admini.html">Upate frontend</a>
+    </div>
+
+    <div class="card">
+      <h3>Add Skill</h3>
+      <input type="text" id="skillName" placeholder="Skill Name">
+      <button onclick="addSkill()">Add</button>
+    </div>
+
+    <div class="card">
+      <h3>Add Work Experience</h3>
+      <input type="text" id="expTitle" placeholder="Title">
+      <input type="text" id="expCompany" placeholder="Company">
+      <input type="text" id="expStart" placeholder="Start Date">
+      <input type="text" id="expEnd" placeholder="End Date">
+      <textarea id="expDesc" placeholder="Description"></textarea>
+      <button onclick="addExperience()">Add</button>
+    </div>
+
+    <div class="card">
+      <h3>Add Project</h3>
+      <input type="text" id="projTitle" placeholder="Title">
+      <textarea id="projDesc" placeholder="Description"></textarea>
+      <input type="text" id="projGithub" placeholder="GitHub Link">
+      <input type="text" id="projLive" placeholder="Live Link">
+      <button onclick="addProject()">Add</button>
+    </div>
+
+    <div class="card">
+      <h3>Add Certificate</h3>
+      <form id="certificateForm" enctype="multipart/form-data">
+        <label for="imageUpload">Choose Image:</label>
+        <input type="file" id="imageUpload" name="image" accept="image/*" required><br><br>
+
+        <input type="text" name="name_school" placeholder="Institution" required>
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="type_of_certificate" placeholder="Certificate Type">
+        <input type="date" name="end_date" placeholder="End Date">
+        <input type="url" name="certificate_link" placeholder="Cert link">
+
+        <button type="button" onclick="addCertificate()">Add</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Details Update About Me</h3>
+      <textarea id="aboutContent" placeholder="Write something about yourself..."></textarea>
+      <button onclick="updateAbout()">Update</button>
+    </div>
+
+  <form id="heroForm">
+    <h3>Update first protfolio Details</h3>
+
+    <input type="text" name="heading" placeholder="Heading" required />
+    <input type="text" name="subheading" placeholder="Subheading" required />
+    <textarea name="description" placeholder="Description" required></textarea>
+    <button type="submit">Update Hero</button>
+  </form>
+
+
+
+  <div class="section">
+    <h2>core_skills</h2>
+    <div id="cSkills">Loading...</div>
+  </div>
+
+  
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+
+  <script src="./admin.js"></script>
+
+
+  <script>
+    // Hide hire link if not logged in
+    document.getElementById("hirePageLink").addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        const res = await fetch('/admin/check-session');
+        const data = await res.json();
+        if (data.loggedIn) {
+          window.location.href = e.target.href;
+        } else {
+          alert("❌ You must be logged in as admin to access this page.");
+        }
+      } catch (err) {
+        alert("Error checking session.");
+      }
+    });
+  </script>
+
+</body>
+</html>

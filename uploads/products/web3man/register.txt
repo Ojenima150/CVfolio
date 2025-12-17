@@ -1,0 +1,115 @@
+import express from "express";
+import multer from "multer";
+import pool from "../models/db.js";
+import { ensureAdmin } from "../middleware/auth.js";
+
+
+const router = express.Router();
+
+// ========================
+// Configure multer (store files in /public/uploads)
+// ========================
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads/"); // make sure this folder exists
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+
+const upload = multer({ storage });
+
+// ========================
+// Show ALL products
+// ========================
+router.get("/", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM products ORDER BY id DESC");
+
+    res.render("products", {
+      products: result.rows,
+      user: req.session.user || null,
+    });
+  } catch (err) {
+    console.error("❌ Error fetching products:", err);
+    res.status(500).send("Error loading products");
+  }
+});
+
+// ========================
+// Show MY products (if logged in)
+// ========================
+router.get("/mine", async (req, res) => {
+  try {
+    if (!req.session.user) {
+      return res.redirect("/login");
+    }
+
+    const result = await pool.query(
+      "SELECT * FROM products WHERE created_by = $1 ORDER BY id DESC",
+      [req.session.user.id]
+    );
+
+    res.render("products", {
+      products: result.rows,
+      user: req.session.user,
+    });
+  } catch (err) {
+    console.error("❌ Error fetching user products:", err);
+    res.status(500).send("Error loading your products");
+  }
+});
+
+// ========================
+// Show Add Product Form
+// ========================
+// router.get("/add",  (req, res) => {
+//   if (!req.session.user) {
+//     return res.redirect("/login"); // only logged-in users can add
+//   }
+  router.get("/add", ensureAdmin, (req, res) => {
+    res.render("add-product", { 
+      user: req.session.user }); // only logged-in users can add
+  });
+
+//   res.render("add-product", {
+//     user: req.session.user
+//   });
+// });
+
+
+// ========================
+// Add a new product
+// ========================
+router.post("/add", upload.single("image"), async (req, res) => {
+  try {
+    const { name, description, price, stock } = req.body;
+    const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
+    const createdBy = req.session.user.id;
+    
+    // req.session.user.id : null;
+
+    // ✅ Insert into correct columns
+    await pool.query(
+      "INSERT INTO products (name, description, price, stock, image_url, created_by) VALUES ($1, $2, $3, $4, $5, $6)",
+      [name, description, price, stock, imagePath, createdBy]
+    );
+
+    res.redirect("/products/mine"); // go to "My Products" after adding
+  } catch (err) {
+    console.error("❌ Error adding product:", err);
+    res.status(500).send("Error adding product");
+  }
+});
+
+export default router;
+
+
+
+
+
+
+
+

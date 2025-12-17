@@ -1,0 +1,161 @@
+step 8===>using the ; CodeSandbox, is better 
+ 
+       CodeSandbox,
+
+step 1.0 ==>
+     create a folde using the terminal method such as 
+              mkdir React project.
+            create a js file it with 
+       =================> touch index.js 
+          open it with 
+             ===========> code index.js 
+
+
+
+
+step 2===>clear 
+      npx clear-npx-cache
+
+   npm create vite@latest my-react-app --template react
+      select --> JavaScript
+then 
+
+   cd my-react-app
+  npm install    
+  npm run dev -----------this for runing the code 
+=================================
+
+
+better way to use react in vsc without passing through stress 
+
+follow the step---->
+     Create folders and files
+-----------------------
+
+In VS Code (or terminal):
+
+    mkdir my-app
+   cd my-app
+   mkdir public src
+   touch public/index.html public/style.css src/index.js package.json vite.config.js 
+
+     ========then install the follow server 
+
+      
+     npm init -y         => package.json
+     
+     npm install react react-dom     ==> Install React + ReactDOM
+    
+     npm install --save-dev @vitejs/plugin-react
+
+
+
+use this 
+       npm create vite@latest or install ====< > npm install -D vite @vitejs/plugin-react
+or this 
+     npm install -D parcel     ==> For Parcel (easiest):
+
+
+---------================underinstall package 
+
+npm uninstall -D parcel
+
+===========to run the program we use this 
+
+     npm start
+
+    
+    
+   
+     
+     
+     
+    
+   
+   
+   
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

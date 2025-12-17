@@ -1,0 +1,28 @@
+<%- include("partials/header") %>
+
+<h2>Main Admin Dashboard (CEO)</h2>
+<p>Welcome, <%= user.username %>! Here you can approve or reject Created Admins.</p>
+
+<table border="1">
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  <% admins.forEach(a => { %>
+    <tr>
+      <td><%= a.username %></td>
+      <td><%= a.email %></td>
+      <td><%= a.approved ? "✅ Approved" : "❌ Pending" %></td>
+      <td>
+        <% if (!a.approved) { %>
+          <a href="/admin/approve/<%= a.id %>">Approve</a>
+        <% } %>
+        <a href="/admin/delete/<%= a.id %>" onclick="return confirm('Delete this admin?')">Delete</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include("partials/footer") %>

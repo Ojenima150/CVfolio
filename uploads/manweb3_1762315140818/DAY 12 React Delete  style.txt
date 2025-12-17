@@ -1,0 +1,99 @@
+we are going to be using 
+--------->
+software to use ==> CodeSandbox
+
+                    < https://codesandbox.io/dashboard/recent?workspace=ws_8g5Kub1qUMKWsXqEjJFPKj&new_workspace=true >
+
+things to install when working with React.js 
+----------------------------------<
+  npm create vite@latest my-react-app --template react
+React-project
+
+=================
+
+
+
+
+
+
+olde version of delect 
+------------
+
+@material-ui/core
+
+@material-ui/icons
+
+ style code ===>  import DeleteIcon from '@material-ui/icons/Delete'; n   --- then useing in the div statement 
+              
+                 <DeleteIcon />
+
+
+================for add icon 
+
+import AddIcon from '@material-ui/icons/Add';
+ code  <addicon />
+
+button styel =======> import Fab from "@material-ui/core/Fab";
+   
+ code=> <fab> </fab>
+
+======= in other to make this work well then we have to use the zoom method such as 
+
+  import Zoom from '@material-ui/core/Zoom';
+
+then apply the component here like in head and the close of the fab 
+
+such as 
+<zoom> 
+    <fab> </fab>
+</zoom>
+
+
+============and to add image to our web pag we can use something call 
+
+TRANSPARENT TEXTURES ====== https://www.transparenttextures.com/
+
+
+==============================
+  new version of delect style 
+---------------
+
+ @mui/material
+
+@mui/icons-material
+
+@emotion/react
+
+@emotion/styled
+
+===styele code ======>  import DeleteIcon from '@mui/icons-material/Delete';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

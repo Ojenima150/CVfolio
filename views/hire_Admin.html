@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hire Admin Upload (Folder Support)</title>
+  <link rel="stylesheet" href="../frontend/css/style.css">
+  <link rel="stylesheet" href="./css/views.css" />
+
+
+</head>
+<body>
+
+  <!-- ✅ NAVBAR -->
+  <nav>
+    <a href="http://localhost:5000/admin/admin.html">⚙️ Admin Login</a>
+    <a href="/index.html">🏠 Home</a>
+  </nav>
+
+  <div class="container"> 
+    <h2 class="h2ro">📁 Upload Completed Project Folder</h2>
+    <p> Please kindly upload your project here </p>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label>Project Name:</label>
+      <input type="text" name="projectName" placeholder="Project Name" required><br>
+
+      <label>Hire Name:</label>
+      <input type="text" name="hireName" placeholder="Hire Full Name" required><br>
+
+      <label>Hire Email:</label>
+      <input type="email" name="hireEmail" placeholder="Hire Email" required><br>
+
+      <label>Select Folder to Upload:</label>
+      <input type="file" name="files" webkitdirectory directory multiple required><br>
+
+      <button type="submit">Upload Folder</button>
+    </form>
+
+    <div id="message"></div>
+    <div id="shareLink"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('uploadForm');
+    const messageDiv = document.getElementById('message');
+    const shareDiv = document.getElementById('shareLink');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      messageDiv.innerText = '⏳ Uploading folder, please wait...';
+      shareDiv.innerText = '';
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('/hire/upload', { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (data.link) {
+          messageDiv.innerText = '✅ Folder uploaded and email sent successfully!';
+          shareDiv.innerHTML = `
+            🔗 Share Link for ${formData.get('hireName')}: 
+            <a href="${data.link}" target="_blank">${data.link}</a>
+          `;
+        } else {
+          messageDiv.innerText = data.message || 'Upload completed, but no link returned.';
+        }
+      } catch (err) {
+        messageDiv.innerText = '❌ Upload error: ' + err.message;
+      }
+    });
+  </script>
+
+  <script src="../frontend/admin/admin.js"></script>
+</body>
+</html>

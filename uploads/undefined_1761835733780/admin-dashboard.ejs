@@ -1,0 +1,50 @@
+<%- include("partials/header") %>
+
+<h2>My Products</h2>
+
+<!-- Created Admin’s product management -->
+<!-- Add product form -->
+<form action="/products/add" method="POST" enctype="multipart/form-data">
+  <input type="text" name="name" placeholder="Product Name" required><br>
+  <textarea name="description" placeholder="Description"></textarea><br>
+  <input type="number" name="price" placeholder="Price" step="0.01" required><br>
+  <input type="number" name="stock" placeholder="Stock" required><br>
+  <input type="file" name="image"><br>
+  <button type="submit">Upload</button>
+</form>
+
+<hr>
+
+<!-- List of products -->
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Stock</th>
+    <th>Actions</th>
+  </tr>
+  <% products.forEach(p => { %>
+    <tr>
+      <td><%= p.name %></td>
+      <td>$<%= p.price %></td>
+      <td><%= p.stock %></td>
+      <td>
+        <!-- Edit Form -->
+        <form action="/products/edit/<%= p.id %>" method="POST" style="display:inline;">
+          <input type="text" name="name" value="<%= p.name %>" required>
+          <input type="number" name="price" value="<%= p.price %>" step="0.01" required>
+          <input type="number" name="stock" value="<%= p.stock %>" required>
+          <button type="submit">Save</button>
+        </form>
+
+        <!-- Delete -->
+        <a href="/products/delete/<%= p.id %>" onclick="return confirm('Delete this product?')">Delete</a>
+      </td>
+    </tr>
+  <% }) %>
+</table>
+
+<%- include("partials/footer") %>
+
+
+

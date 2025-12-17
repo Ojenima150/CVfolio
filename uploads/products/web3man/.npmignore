@@ -1,0 +1,10 @@
+scripts/
+test/
+
+!lib/mapping_table.json
+
+reports/
+test/
+
+.jshintrc
+.travis.yml

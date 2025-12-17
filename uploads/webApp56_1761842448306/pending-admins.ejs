@@ -1,0 +1,15 @@
+<%- include("partials/header") %>
+
+<h2>Pending Admins</h2>
+
+<ul>
+  <% admins.forEach(admin => { %>
+    <li>
+      <%= admin.name %> - <%= admin.email %>
+      <a href="/admin/approve/<%= admin.id %>">Approve</a>
+    </li>
+  <% }) %>
+</ul>
+<a href="/admin/dashboard">Back to Dashboard</a>
+
+<%- include("partials/footer") %>

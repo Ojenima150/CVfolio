@@ -1,0 +1,38 @@
+<%- include("partials/header") %>
+
+<div class="container mt-4">
+  <h2>Products</h2>
+
+  <% if (user && (user.role === "created_admin" || user.role === "main_admin")) { %>
+    <a href="/products/add" class="btn btn-primary mb-3">➕ Add Product</a>
+  <% } %>
+
+  <div class="row">
+    <% if (products.length === 0) { %>
+      <p>No products found.</p>
+    <% } else { %>
+      <% products.forEach(function(product) { %>
+        <% 
+          // normalize image path: prefer image_url, fallback to image/filename
+          let imgPath = product.image_url || product.image || product.imageUrl || "";
+          if (imgPath && !imgPath.startsWith("/") && !imgPath.startsWith("http")) {
+            imgPath = "/uploads/" + imgPath; // filename-only -> uploads folder
+          }
+          // encode and ensure we have a usable src (works for .png, .jpg, .jpeg, etc.)
+          const safeImg = imgPath ? encodeURI(imgPath) : "";
+        %>
+
+        <!-- DEBUG (remove when finished) -->
+        <div style="font-size:12px;color:#444;margin-bottom:6px;">
+          DB image_url: <%= product.image_url %> — rendered src: <%= safeImg || '/images/placeholder.png' %>
+        </div>
+
+        <img src="<%= safeImg || '/images/placeholder.png' %>" alt="<%= product.title || product.name %>" class="product-image" />
+        <h3><%= product.title || product.name %></h3>
+        <p class="price">$<%= Number(product.price || 0).toFixed(2) %></p>
+      <% }) %>
+    <% } %>
+  </div>
+</div>
+
+<%- include("partials/footer") %>

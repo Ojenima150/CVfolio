@@ -1,0 +1,3 @@
+https://www.emojimeanings.net/list-smileys-people-whatsapp
+
+react == https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dl

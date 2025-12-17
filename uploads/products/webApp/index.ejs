@@ -1,0 +1,41 @@
+<%- include("partials/header") %>
+
+<h2>Welcome to Our Store</h2>
+<% if (products && products.length > 0) { %>
+  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    <% products.forEach(p => { %>
+      <% 
+        // normalize image path like in product.ejs
+        let imgPath = p.image_url || p.image || p.imageUrl || "";
+        if (imgPath && !imgPath.startsWith("/") && !imgPath.startsWith("http")) {
+          imgPath = "/uploads/" + imgPath; 
+        }
+        const safeImg = imgPath ? encodeURI(imgPath) : "/images/placeholder.png";
+      %>
+
+    <div style="border:1px solid #ddd; padding:10px; border-radius:5px; background:#fff;">
+      <img src="<%= safeImg %>" alt="<%= p.name %>" style="width:100%; height:200px; object-fit:cover; margin-bottom:10px;" />
+      <h3><%= p.name %></h3>
+      <p><%= p.description %></p>
+      <p><strong>$<%= Number(p.price || 0).toFixed(2) %></strong></p>
+
+      <% if (user) { %>
+        <!-- Only logged-in users see Add to Cart -->
+        <form action="/cart/add" method="POST">
+          <input type="hidden" name="id" value="<%= p.id %>">
+          <input type="hidden" name="name" value="<%= p.name %>">
+          <input type="hidden" name="price" value="<%= p.price %>">
+          <button type="submit" class="btn btn-success">Add to Cart</button>
+        </form>
+      <% } %>
+    </div>
+
+
+    <% }) %>
+  </div>
+<% } else { %>
+  <p>No products available.</p>
+<% } %>
+
+
+<%- include("partials/footer") %>

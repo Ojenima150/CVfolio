@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Ratings & References</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    h2 {
+      color: #007bff;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .rate-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .rate-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .rate-card h3 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    .rate-card p {
+      font-size: 14px;
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>⭐ Ratings & References from Clients</h2>
+  <div id="ratings">Loading...</div>
+
+  <script>
+    async function loadRatings() {
+      const res = await fetch('/hire/ratings');
+      const ratings = await res.json();
+      const container = document.getElementById('ratings');
+
+      if (!ratings.length) {
+        container.innerHTML = '<p>No ratings yet. Be the first!</p>';
+        return;
+      }
+
+      container.innerHTML = `<div class="rate-container">
+        ${ratings.map(r => `
+          <div class="rate-card">
+            <h3>${r.name}</h3>
+            <p><strong>Rating:</strong> ${'⭐'.repeat(r.rating)}</p>
+            <p>${r.reference}</p>
+          </div>
+        `).join('')}
+      </div>`;
+    }
+
+    loadRatings();
+  </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.skill-box {
+  background: var(--card-bg);
+  padding: 15px 25px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.skill-icon {
+  font-size: 1.3rem;
+}
+
+/* // frontend/js/experience.html */
+
+ /* debug only — remove after testing */
+.experience-card { outline: 2px solid rgba(0,128,255,0.12); }
+.experience-card h3 { outline: 2px dashed rgba(255,0,0,0.08); }
+.experience-card .description { outline: 2px dotted rgba(0,128,0,0.12); }
+
+.experience-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* increase spacing between cards (default was 18px) */
+}
+
+.experience-card {
+  margin-bottom: 10px; /* adds space after each card */
+}
+
+.experience-card:last-child {
+  margin-bottom: 0; /* remove gap after the last card */
+}
+.experience-card h3 {
+  margin-bottom: 5px; /* increase space below title */
+  font-size: 1.3rem; /* slightly larger title */
+}
+.experience-title {
+  font-weight: 600;
+}
+
+.experience-date {
+  margin-left: 12px;  /* adjust until perfect */
+  color: gray;
+  font-size: 0.95rem;
+}
+
+
+/*  // frontend/js/projects.html  */
+
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.project-card .description {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.project-links a {
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 
+body {
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  max-width: 800px;
+  margin: auto;
+  background: #f9f9f9;
+} */
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.skill-item {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.skill-item input {
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px;
+}
+.skill-item button {
+  margin-top: 5px;
+  padding: 6px 10px;
+}
+.add-section {
+  margin-top: 30px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}

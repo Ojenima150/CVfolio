@@ -1,0 +1,59 @@
+async function loadCoreSkills() {
+    const container = document.getElementById("skillsList");
+    const res = await fetch("/api/core_skills");
+    const skills = await res.json();
+
+    if (!skills.length) {
+        container.innerHTML = "No skills found.";
+        return;
+    }
+
+    container.innerHTML = skills.map(skill => `
+        <div class="skill-item" data-id="${skill.id}">
+            <span>${skill.name} (${skill.level})</span>
+            <button class="delete">Delete</button>
+        </div>
+    `).join("");
+}
+
+// Event delegation for delete
+document.getElementById("skillsList").addEventListener("click", async (e) => {
+    if (!e.target.classList.contains("delete")) return;
+
+    const div = e.target.closest(".skill-item");
+    const id = div.dataset.id;
+
+    if (!confirm("Are you sure you want to delete this skill?")) return;
+
+    try {
+        const res = await fetch(`/api/core_skills/${id}`, { method: "DELETE" });
+        if (!res.ok) throw new Error("Delete failed");
+        loadCoreSkills(); // refresh list after deletion
+    } catch (err) {
+        alert(err.message);
+    }
+});
+
+// Add new skill
+document.getElementById("addSkillBtn").addEventListener("click", async () => {
+    const name = document.getElementById("newName").value.trim();
+    const level = document.getElementById("newLevel").value.trim();
+    if (!name) return alert("Please enter a category name.");
+
+    try {
+        const res = await fetch("/api/core_skills", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, level })
+        });
+        if (!res.ok) throw new Error("Failed to add skill");
+        document.getElementById("newName").value = "";
+        document.getElementById("newLevel").value = "";
+        loadCoreSkills();
+    } catch (err) {
+        alert(err.message);
+    }
+});
+
+// Initial load
+loadCoreSkills();  

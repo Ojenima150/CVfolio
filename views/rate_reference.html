@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rate & Reference My Work</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f9fa;
+      padding: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #007bff;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    textarea, select, input {
+      width: 100%;
+      margin-top: 5px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      margin-top: 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+
+    nav {
+      background: #007bff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-right: 15px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+
+<!-- ✅ NAVBAR -->
+  <nav>
+    <a href="/index.html">⬅️ Back to Home</a>
+  </nav>
+
+<body>
+
+  <div class="container">
+    <h2>⭐ Leave a Rate & Reference</h2>
+    <form id="rateForm">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="rating">Rate My Work</label>
+      <select id="rating" required>
+        <option value="">Select Rating</option>
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+        <option value="4">⭐⭐⭐⭐ Good</option>
+        <option value="3">⭐⭐⭐ Average</option>
+        <option value="2">⭐⭐ Poor</option>
+        <option value="1">⭐ Very Poor</option>
+      </select>
+
+      <label for="reference">Write a Reference</label>
+      <textarea id="reference" rows="4" placeholder="Write something about my work..." required></textarea>
+
+      <button type="submit">Submit Rating</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('rateForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value,
+        rating: document.getElementById('rating').value,
+        reference: document.getElementById('reference').value
+      };
+
+      const res = await fetch('/hire/save_rating', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert('✅ Thank you for your rating and reference!');
+        // window.location.href = '/views/display_rate_reference.html';
+        window.location.href = '/index.html';
+
+      } else {
+        alert('❌ Failed to save rating. Please try again.');
+      }
+    });
+  </script>
+
+</body>
+</html>

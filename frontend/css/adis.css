@@ -1,0 +1,104 @@
+/* Remove large spacing for ONLY the ads page */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.ads-seion .seion {
+  margin: 10px 0 !important;
+  padding: 10px 0 !important;
+}
+
+/* Title spacing */
+.ads-seion .seion-title {
+  margin-top: 20px !important;
+  margin-bottom: 10px !important;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Reduce spacing for intro paragraph */
+#ads-landing p {
+  margin: 8px auto !important;
+  line-height: 1.5;
+  max-width: 800px;
+  text-align: center;
+}
+
+/* Reduce container padding */
+.ads-seion .conto {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Headers inside each section */
+.ads-seion h2 {
+  margin-bottom: 8px !important;
+  text-align: center;
+}
+
+/* Service list spacing */
+.service-list {
+  margin: 0 auto !important;
+  padding: 0 !important;
+  list-style: none;
+  max-width: 600px;
+}
+
+.service-list li {
+  margin: 4px 0 !important;
+  text-align: center;
+}
+
+/* Case study spacing */
+.case-study {
+  margin: 12px 0 !important;
+  padding: 10px;
+  border-left: 2px solid #3498db;
+  align-items: center;
+}
+
+/* Testimonials spacing */
+#testimonials blockquote {
+  margin: 8px auto !important;
+  max-width: 700px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* CTA button area tight spacing */
+#call-to-action p {
+  margin: 10px 0 !important;
+  text-align: center;
+}
+
+/* CTA button */
+.cta-btn {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.cta-btn-primary {
+  background-color: var(--accent);
+  color: #fff;
+}
+.cta-btn-primary:hover {
+  background-color: var(--accent-dark);
+}
+.cta-btn-secondary {
+  background-color: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}   
+.cta-btn-secondary:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+.cta-btn {
+  margin: 0 6px !important;
+}
+
